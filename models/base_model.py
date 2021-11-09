@@ -34,18 +34,14 @@ class BaseModel:
         """
         if kwargs:
             for key, value in kwargs.items():
-                # if hasattr(key, "created_at"):
-                if key == "created_at":
-                    self.created_at = datetime.strptime(kwargs[key],
+                if hasattr(self, "created_at"):
+                #if key == "created_at":
+                    self.created_at = datetime.strptime(kwargs["created_at"],
                                                         "%Y-%m-%dT%H:%M:%S.%f")
-                # if hasattr(key, "updated_at"):
-                if key == "updated_at":
-                    self.updated_at = datetime.strptime(kwargs[key],
+                if hasattr(self, "updated_at"):
+                #if key == "updated_at":
+                    self.updated_at = datetime.strptime(kwargs["updated_at"],
                                                         "%Y-%m-%dT%H:%M:%S.%f")
-
-                # if key == "__class__":
-                #    pass
-
                 if key != "__class__":
                         setattr(self, key, value)
 
