@@ -26,8 +26,12 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
+    clsDic = {"BaseModel": BaseModel}
 
     def all(self):
+        """
+        Return all objects of the dictionary
+        """
         return self.__objects
 
     def new(self, obj):
@@ -52,11 +56,10 @@ class FileStorage:
         new_dict = {}
 
         for key, value in self.__objects.items():
-            new_dict[key] = self.__objects[key].to_dict()
+            new_dict[key] = value.to_dict()
 
         with open(self.__file_path, 'w') as File:
-            json_str = json.dumps(new_dict)
-            File.write(json_str)
+            json.dump(new_dict, File)
 
     def reload(self):
         """
@@ -66,12 +69,22 @@ class FileStorage:
         Then convert everything as a dictionary object like before
         if doesn't exist then pass since no exception need it right now
         """
-        print("Reloading")
-        newDict = {}
-
         try:
             with open(self.__file_path, "r") as File:
-                json.loads(File)
+                newDic = json.load(File)
+                # print("Before forloop")
+                for key, value in newDic.items():
+                    # print("-------------------------------------")
+                    # print("After forloop classes")
+                    # print("-------------------------------------")
+                    # print("This is key value:", key)
+                    classes = key.split(".")
+                    # print("-------------------------------------")
+                    # print("This is classes variable:", classes)
+                    # print("-------------------------------------")
+                    # print("This is after eval:", eval(classes[0])(**value))
+                    # print("-------------------------------------")
+                    self.__objects[key] = eval(classes[0])(**value)
 
         except:
             pass
