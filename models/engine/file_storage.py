@@ -35,8 +35,9 @@ class FileStorage:
         Creating a new key for the base.id format
         and adding to the dictionary
         """
-        key = obj.__class__.__name__ + '.' + obj.id
-        # key = "{}.{}".format(self.__class__.__name__, obj.id)
+        # print("Creating a Key") for debugging
+        # key = obj.__class__.__name__ + '.' + obj.id
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 
     def save(self):
@@ -47,13 +48,15 @@ class FileStorage:
         then we give all the objects key/val to our new dict so we can save it
         in as Json File
         """
+        # print("Creating a dict") for debugging
         new_dict = {}
 
         for key, value in self.__objects.items():
             new_dict[key] = self.__objects[key].to_dict()
 
         with open(self.__file_path, 'w') as File:
-            json.dump(new_dict, File)
+            json_str = json.dumps(new_dict)
+            File.write(json_str)
 
     def reload(self):
         """
@@ -63,12 +66,12 @@ class FileStorage:
         Then convert everything as a dictionary object like before
         if doesn't exist then pass since no exception need it right now
         """
+        print("Reloading")
         newDict = {}
 
         try:
             with open(self.__file_path, "r") as File:
-                newDict = json.loads(File)
-            return newDict
+                json.loads(File)
 
         except:
             pass
