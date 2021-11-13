@@ -136,11 +136,6 @@ class HBNBCommand(cmd.Cmd):
         except IndexError:
             print("** instance id missing **")
 
-    def do_test(self, line):
-        'Testing this command with multiple conditions'
-        check = parse(line)
-        print("Printing line without space between arguments:", line)
-
 def parse(line):
     'Parse a command line to get rid of whitespace'
     return tuple(line.split())
