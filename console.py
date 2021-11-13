@@ -28,7 +28,7 @@ Note:
 import cmd
 from models.base_model import BaseModel
 from models import storage
-
+from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -38,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
     """
     intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
     prompt = '(hbnb) '
-    classes = ["BaseModel"]
+    classes = ["BaseModel", "User"]
 
     def do_quit(self, line):
         'Quit command to exit the program'
