@@ -23,6 +23,7 @@ from uuid import uuid4
 from datetime import datetime
 import models
 
+
 class BaseModel:
     """
     The base class for all the subclasses
@@ -35,11 +36,11 @@ class BaseModel:
         if kwargs:
             for key, value in kwargs.items():
                 if hasattr(self, "created_at"):
-                #if key == "created_at":
+                    # if key == "created_at":
                     self.created_at = datetime.strptime(kwargs["created_at"],
                                                         "%Y-%m-%dT%H:%M:%S.%f")
                 if hasattr(self, "updated_at"):
-                #if key == "updated_at":
+                    # if key == "updated_at":
                     self.updated_at = datetime.strptime(kwargs["updated_at"],
                                                         "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
