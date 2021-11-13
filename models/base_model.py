@@ -44,7 +44,7 @@ class BaseModel:
                     self.updated_at = datetime.strptime(kwargs["updated_at"],
                                                         "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
-                        setattr(self, key, value)
+                    setattr(self, key, value)
 
         else:
             self.id = str(uuid4())

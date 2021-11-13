@@ -19,6 +19,7 @@ Public instance methods:
 from models.base_model import BaseModel
 import json
 
+
 class FileStorage:
     """
     class that serializes instances to a
@@ -38,8 +39,6 @@ class FileStorage:
         Creating a new key for the base.id format
         and adding to the dictionary
         """
-        # print("Creating a Key") for debugging
-        # key = obj.__class__.__name__ + '.' + obj.id
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 
@@ -51,7 +50,6 @@ class FileStorage:
         then we give all the objects key/val to our new dict so we can save it
         in as Json File
         """
-        # print("Creating a dict") for debugging
         new_dict = {}
 
         for key, value in self.__objects.items():
@@ -70,20 +68,14 @@ class FileStorage:
         """
         try:
             with open(self.__file_path, "r") as File:
+
                 newDic = json.load(File)
-                # print("Before forloop")
+
                 for key, value in newDic.items():
-                    # print("-------------------------------------")
-                    # print("After forloop classes")
-                    # print("-------------------------------------")
-                    # print("This is key value:", key)
+
                     classes = key.split(".")
-                    # print("-------------------------------------")
-                    # print("This is classes variable:", classes)
-                    # print("-------------------------------------")
-                    # print("This is after eval:", eval(classes[0])(**value))
-                    # print("-------------------------------------")
+
                     self.__objects[key] = eval(classes[0])(**value)
 
-        except:
+        except FileNotFoundError:
             pass
