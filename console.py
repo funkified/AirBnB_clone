@@ -38,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
     """
     intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
     prompt = '(hbnb) '
-    classes = ["BaseModel", "User", "City", "Amenity", "Place", "Review"]
+    classes = ["BaseModel"]
 
     def do_quit(self, line):
         'Quit command to exit the program'
@@ -60,33 +60,78 @@ class HBNBCommand(cmd.Cmd):
 
         elif line in self.classes:
             check = eval(line)()
-            storage.new(check)
+            # storage.new(check)
             storage.save()
             print(check.id)
 
         else:
             print("** class doesn't exist")
 
-    def do_show(self, line):
-        'Show a string representation of an instance'
+    def do_destroy(self, line):
+        'Deletes an instance based on the class name and id'
         if not line:
             print("** class name missing **")
+            return
 
-        if line not in self.classes:
+        if line.split()[0] not in self.classes:
             print("** class doesn't exist **")
+            return
 
-        Split = line.split()
-        print(line)
-        print(Split)
+        buffed = parse(line)
 
         try:
-            if Split[1]:
-                string = "{}.{}".format(Split[0], Split[1])
+            if buffed[1]:
+                string = "{}.{}".format(buffed[0], buffed[1])
 
                 if string not in storage.all().keys():
                     print("** no instance found **")
                 else:
-                    print(storage.all())
+                    del storage.all()[string]
+                    storage.save()
+
+        except IndexError:
+            print("** instance id missing **")
+
+    def do_all(self, line):
+        'Prints a string representation of all instances'
+        buffed = parse(line)
+        objStr = []
+
+        if len(line) == 0:
+            for values in storage.all().values():
+                objStr.append(values)
+            print(objStr)
+
+        elif buffed[0] in self.classes:
+            for key, values in storage.all().items():
+                if buffed[0] in key:
+                    objStr.append(values)
+            print(objStr)
+
+        else:
+            print("** class doesn't exist **")
+
+    def do_show(self, line):
+        'Show a string representation of an instance'
+        if not line:
+            print("** class name missing **")
+            return
+
+        if line.split()[0] not in self.classes:
+            print("** class doesn't exist **")
+            return
+
+        buffed = parse(line)
+
+        try:
+            if buffed[1]:
+                string = "{}.{}".format(buffed[0], buffed[1])
+
+                if string not in storage.all().keys():
+                    print("** no instance found **")
+                else:
+                    output = storage.all()
+                    print(output[string])
 
         except IndexError:
             print("** instance id missing **")
