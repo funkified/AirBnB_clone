@@ -39,8 +39,9 @@ class FileStorage:
         Creating a new key for the base.id format
         and adding to the dictionary
         """
-        key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.__objects[key] = obj
+        if obj:
+            key = "{}.{}".format(obj.__class__.__name__, obj.id)
+            self.__objects[key] = obj
 
     def save(self):
         """
