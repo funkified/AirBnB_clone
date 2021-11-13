@@ -35,6 +35,7 @@ from models.review import Review
 from models.amenity import Amenity
 from models.state import State
 
+
 class HBNBCommand(cmd.Cmd):
     """
     Declare class instances:
@@ -43,7 +44,8 @@ class HBNBCommand(cmd.Cmd):
     """
     intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
     prompt = '(hbnb) '
-    classes = ["BaseModel", "User", "State", "Place", "City", "Amenity", "Review"]
+    classes = ["BaseModel", "User", "State", "Place",
+               "City", "Amenity", "Review"]
 
     def do_quit(self, line):
         'Quit command to exit the program'
@@ -140,6 +142,38 @@ class HBNBCommand(cmd.Cmd):
 
         except IndexError:
             print("** instance id missing **")
+
+    def do_update(self, line):
+        'Updates an instance -> USAGE: <Class Name> <id> <attribute name>\
+ "<attribute value"'
+        buffed = parse(line)
+        print(buffed)
+        if len(buffed) == 4:
+            clsKey = "{}.{}".format(buffed[0], buffed[1])
+            buffed[3].strip('"')
+            buffed[3].strip("'")
+            setattr(storage.all()[clsKey], buffed[2], buffed[3])
+        if len(buffed) == 0:
+            print("** class name missing **")
+            return
+        if buffed[0] not in self.classes:
+            print("** class doesn't exist **")
+            return
+        if len(buffed) == 1:
+            print("** instance id missing **")
+            return
+        checkId = "{}.{}".format(buffed[0], buffed[1])
+        if checkId not in storage.all():
+            print("** no instance found **")
+            return
+        if len(buffed) == 2:
+            print("** attribute name missing **")
+            return
+        else:
+            print("** value missing **")
+
+
+# Helper function below
 
 def parse(line):
     'Parse a command line to get rid of whitespace'
