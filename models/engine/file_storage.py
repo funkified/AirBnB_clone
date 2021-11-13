@@ -72,11 +72,11 @@ class FileStorage:
 
                 newDic = json.load(File)
 
-                for key, value in newDic.items():
+            for key, value in newDic.items():
 
-                    classes = key.split(".")
+                classes = key.split(".")
 
-                    self.__objects[key] = eval(classes[0])(**value)
+                self.__objects[key] = eval(classes[0])(**value)
 
         except FileNotFoundError:
             pass
