@@ -11,8 +11,12 @@ Public instances attributes:
 
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
-    """class for User"""
+    """
+    Class User inherit from BaseModel
+    Will create a new user
+    """
     email = ""
     password = ""
     first_name = ""
