@@ -44,8 +44,9 @@ class HBNBCommand(cmd.Cmd):
     """
     # intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
     prompt = '(hbnb) '
-    classes = ["BaseModel", "User", "State", "Place",
-               "City", "Amenity", "Review"]
+    # classes = ["BaseModel", "User", "State", "Place",
+    #           "City", "Amenity", "Review"]
+    classes = {"BaseModel", "User", "Place", "City", "Amenity", "Review"}
     cls = "HBNBCommand.classes"
 
     def do_quit(self, line):
@@ -103,6 +104,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         'Prints a string representation of all instances'
         buffed = parse(line)
+        objs = storage.all()
         objStr = []
 
         if len(line) == 0:
@@ -110,10 +112,10 @@ class HBNBCommand(cmd.Cmd):
                 objStr.append(values)
             print(objStr)
 
-        elif buffed[0] in HBNBCommand.classes:
-            for key, values in storage.all().items():
+        elif buffed[0] in self.classes:
+            for key, values in objs.items():
                 if buffed[0] in key:
-                    objStr.append(values)
+                    objStr[key] = objs[key]
             print(objStr)
 
         else:
@@ -184,6 +186,21 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             print("** class doesn't exist")
+
+
+    def default(self, line):
+        'Called when the syntax is not recognized unless its overriden'
+        buffed = line.split(".")
+        clsArg = buffed[0]
+        if len(buffed) == 1:
+            print("*** Unknown syntax: {}".format(buffed[0]))
+
+        else:
+            if len(buffed) == 2 and buffed[0] in self.classes:
+                if buffed[1] == "count()":
+                    self.do_count(clsArg)
+                if buffed[1] == "all":
+                    self.do_all(clsArg)
 
 
 # Helper function below
