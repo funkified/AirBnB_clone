@@ -42,10 +42,11 @@ class HBNBCommand(cmd.Cmd):
        - intro: welcome message output
        - prompt: prompt message (ex: (hbnb))
     """
-    intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
+    # intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
     prompt = '(hbnb) '
     classes = ["BaseModel", "User", "State", "Place",
                "City", "Amenity", "Review"]
+    cls = "HBNBCommand.classes"
 
     def do_quit(self, line):
         'Quit command to exit the program'
@@ -65,14 +66,14 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
 
-        elif line in self.classes:
+        elif line not in self.classes:
+            print("** class doesn't exist **")
+
+        elif line in HBNBCommand.classes:
             check = eval(line)()
-            # storage.new(check)
+            storage.new(check)
             storage.save()
             print(check.id)
-
-        else:
-            print("** class doesn't exist")
 
     def do_destroy(self, line):
         'Deletes an instance based on the class name and id'
@@ -109,7 +110,7 @@ class HBNBCommand(cmd.Cmd):
                 objStr.append(values)
             print(objStr)
 
-        elif buffed[0] in self.classes:
+        elif buffed[0] in HBNBCommand.classes:
             for key, values in storage.all().items():
                 if buffed[0] in key:
                     objStr.append(values)
@@ -171,6 +172,18 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             print("** value missing **")
+
+    def do_count(self, line):
+        'Count the number of instances of a class -> <class name>.count()'
+        if line in self.classes:
+            counter = 0
+            for instances in storage.all().keys():
+                if line in instances:
+                    counter += 1
+            print(counter)
+
+        else:
+            print("** class doesn't exist")
 
 
 # Helper function below
