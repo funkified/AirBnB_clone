@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
        - intro: welcome message output
        - prompt: prompt message (ex: (hbnb))
     """
-    intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
+    # intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
     prompt = '(hbnb) '
     classes = ["BaseModel", "User", "State", "Place",
                "City", "Amenity", "Review"]
