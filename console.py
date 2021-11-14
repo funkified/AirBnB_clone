@@ -28,12 +28,13 @@ Note:
 import cmd
 from models.base_model import BaseModel
 from models import storage
-from models.user import User
-from models.place import Place
-from models.city import City
-from models.review import Review
-from models.amenity import Amenity
-from models.state import State
+# from models import classes
+# from models.user import User
+# from models.place import Place
+# from models.city import City
+# from models.review import Review
+# from models.amenity import Amenity
+# from models.state import State
 
 
 class HBNBCommand(cmd.Cmd):
@@ -42,11 +43,12 @@ class HBNBCommand(cmd.Cmd):
        - intro: welcome message output
        - prompt: prompt message (ex: (hbnb))
     """
-    # intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
+    intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
     prompt = '(hbnb) '
-    # classes = ["BaseModel", "User", "State", "Place",
-    #           "City", "Amenity", "Review"]
-    classes = {"BaseModel", "User", "Place", "City", "Amenity", "Review"}
+    classes = ["BaseModel", "User", "State", "Place",
+               "City", "Amenity", "Review"]
+    # classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
+    #           "City": City, "Amenity": Amenity, "Review": Review}
     cls = "HBNBCommand.classes"
 
     def do_quit(self, line):
@@ -198,7 +200,7 @@ class HBNBCommand(cmd.Cmd):
             if len(buffed) == 2 and buffed[0] in self.classes:
                 if buffed[1] == "count()":
                     self.do_count(clsArg)
-                if buffed[1] == "all":
+                if buffed[1] == "all()":
                     self.do_all(clsArg)
 
 

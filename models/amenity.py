@@ -2,7 +2,7 @@
 """
 Module: amenity.py
 
-Public Attributes: 
+Public Attributes:
     - name
 """
 

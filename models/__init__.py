@@ -9,5 +9,9 @@ A package or directory:
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 
+
+# classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
+#           "City": City, "Amenity": Amenity, "Review": Review}
+
 storage = FileStorage()
 storage.reload()
