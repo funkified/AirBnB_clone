@@ -187,7 +187,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist")
 
-
     def default(self, line):
         'Called when the syntax is not recognized unless its overriden'
         buffed = line.split(".")
