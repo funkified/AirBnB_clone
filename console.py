@@ -28,13 +28,13 @@ Note:
 import cmd
 from models.base_model import BaseModel
 from models import storage
-# from models import classes
-# from models.user import User
-# from models.place import Place
-# from models.city import City
-# from models.review import Review
-# from models.amenity import Amenity
-# from models.state import State
+from models import classes
+from models.user import User
+from models.place import Place
+from models.city import City
+from models.review import Review
+from models.amenity import Amenity
+from models.state import State
 
 
 class HBNBCommand(cmd.Cmd):
@@ -47,9 +47,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     classes = ["BaseModel", "User", "State", "Place",
                "City", "Amenity", "Review"]
-    # classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
-    #           "City": City, "Amenity": Amenity, "Review": Review}
-    cls = "HBNBCommand.classes"
+     cls = "HBNBCommand.classes"
 
     def do_quit(self, line):
         'Quit command to exit the program'
