@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
        - intro: welcome message output
        - prompt: prompt message (ex: (hbnb))
     """
-    intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
+    # intro = "Welcome to HBNB shell interpreter! Type ? to list commands"
     prompt = '(hbnb) '
     classes = ["BaseModel", "User", "State", "Place",
                "City", "Amenity", "Review"]
@@ -146,28 +146,27 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         'Updates an instance -> USAGE: <Class Name> <id> <attribute name>\
- "<attribute value"'
+ "<attribute value>"'
         buffed = parse(line)
-        print(buffed)
-        if len(buffed) == 4:
+        if len(buffed) >= 4:
             clsKey = "{}.{}".format(buffed[0], buffed[1])
-            buffed[3].strip('"')
-            buffed[3].strip("'")
-            setattr(storage.all()[clsKey], buffed[2], buffed[3])
-        if len(buffed) == 0:
+            arg3 = buffed[3]
+            arg3.strip('"')
+            arg3.strip("'")
+            setattr(storage.all()[clsKey], buffed[2], arg3)
+        elif len(buffed) == 0:
             print("** class name missing **")
             return
-        if buffed[0] not in self.classes:
+        elif buffed[0] not in self.classes:
             print("** class doesn't exist **")
             return
-        if len(buffed) == 1:
+        elif len(buffed) == 1:
             print("** instance id missing **")
             return
-        checkId = "{}.{}".format(buffed[0], buffed[1])
-        if checkId not in storage.all():
+        elif "{}.{}".format(buffed[0], buffed[1]) not in storage.all():
             print("** no instance found **")
             return
-        if len(buffed) == 2:
+        elif len(buffed) == 2:
             print("** attribute name missing **")
             return
         else:
@@ -194,9 +193,9 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             if len(buffed) == 2 and buffed[0] in self.classes:
-                if buffed[1] == "count()":
+                if buffed[1] == "count":
                     self.do_count(clsArg)
-                if buffed[1] == "all()":
+                if buffed[1] == "all":
                     self.do_all(clsArg)
 
 
