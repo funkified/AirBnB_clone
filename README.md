@@ -32,3 +32,17 @@ This will open our command line interpreter. In here we can use multiple command
 ## Examples of using the console
 ### create command
 ![image](https://user-images.githubusercontent.com/70630575/141741203-346e0791-e9a0-47b9-819b-b550f14f792a.png)
+### show command
+![image](https://user-images.githubusercontent.com/70630575/141741569-04bd6c0c-216d-4fb0-902a-3709f432ea7a.png)
+### update command
+![image](https://user-images.githubusercontent.com/70630575/141743865-3d23f224-63fc-4e8e-828f-6ff1c497061a.png)
+### destroy command
+![image](https://user-images.githubusercontent.com/70630575/141744053-5551dc0a-3008-4a5d-8548-2f2443a461c9.png)
+### quit command
+![image](https://user-images.githubusercontent.com/70630575/141744130-62aa3db3-e0f2-4980-8395-3401ad29d4fb.png)
+
+And that's it, guys. I wish we had more time for this project. There's still many things to fix but we did our best and will continue to develop this program so it can work as it should. Until next time!
+
+
+
+
