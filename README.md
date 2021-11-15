@@ -31,15 +31,66 @@ This will open our command line interpreter. In here we can use multiple command
 
 ## Examples of using the console
 ### create command
-![image](https://user-images.githubusercontent.com/70630575/141741203-346e0791-e9a0-47b9-819b-b550f14f792a.png)
+```
+(07:37:28) vagrant@vagrant-ubuntu-trusty-64:AirBnB_clone(main)
+ --> ./console.py
+Welcome to HBNB shell interpreter! Type ? to list commands
+(hbnb) help create
+Create a new instance of BaseModel
+(hbnb) create BaseModel
+20599d57-c730-4d45-a1ec-68747c85c48f
+(hbnb)
+```
 ### show command
-![image](https://user-images.githubusercontent.com/70630575/141741569-04bd6c0c-216d-4fb0-902a-3709f432ea7a.png)
+```
+(07:42:17) vagrant@vagrant-ubuntu-trusty-64:AirBnB_clone(main)
+ --> ./console.py
+Welcome to HBNB shell interpreter! Type ? to list commands
+(hbnb) help show
+Show a string representation of an instance
+(hbnb) show BaseModel 20599d57-c730-4d45-a1ec-68747c85c48f
+[BaseModel] (20599d57-c730-4d45-a1ec-68747c85c48f) {'updated_at': datetime.datetime(2021, 11, 15, 7, 38, 42, 595026), 'id': '20599d57-c730-4d45-a1ec-68747c85c48f', 'created_at': '2021-11-15T07:38:42.595018'}
+(hbnb)
+```
 ### update command
-![image](https://user-images.githubusercontent.com/70630575/141743865-3d23f224-63fc-4e8e-828f-6ff1c497061a.png)
+```
+(07:58:53) vagrant@vagrant-ubuntu-trusty-64:AirBnB_clone(main)
+ --> ./console.py
+Welcome to HBNB shell interpreter! Type ? to list commands
+(hbnb) help update
+Updates an instance -> USAGE: <Class Name> <id> <attribute name> "<attribute value>"
+(hbnb) create BaseModel
+f4345d35-c2e3-44f6-80d0-73fedcfae65e
+(hbnb) update BaseModel f4345d35-c2e3-44f6-80d0-73fedcfae65e First_Name "Betty"
+(hbnb) show BaseModel f4345d35-c2e3-44f6-80d0-73fedcfae65e
+[BaseModel] (f4345d35-c2e3-44f6-80d0-73fedcfae65e) {'updated_at': datetime.datetime(2021, 11, 15, 7, 59, 1, 395345), 'created_at': datetime.datetime(2021, 11, 15, 7, 59, 1, 395336), 'id': 'f4345d35-c2e3-44f6-80d0-73fedcfae65e', 'First_Name': '"Betty"'}
+(hbnb)
+```
 ### destroy command
-![image](https://user-images.githubusercontent.com/70630575/141744053-5551dc0a-3008-4a5d-8548-2f2443a461c9.png)
+```
+(08:00:39) vagrant@vagrant-ubuntu-trusty-64:AirBnB_clone(main)
+ --> ./console.py
+Welcome to HBNB shell interpreter! Type ? to list commands
+(hbnb) help destroy
+Deletes an instance based on the class name and id
+(hbnb) show BaseModel f4345d35-c2e3-44f6-80d0-73fedcfae65e
+[BaseModel] (f4345d35-c2e3-44f6-80d0-73fedcfae65e) {'id': 'f4345d35-c2e3-44f6-80d0-73fedcfae65e', 'updated_at': '2021-11-15T07:59:01.395345', 'created_at': datetime.datetime(2021, 11, 15, 7, 59, 1, 395336)}
+(hbnb) destroy BaseModel f4345d35-c2e3-44f6-80d0-73fedcfae65e
+(hbnb) show BaseModel f4345d35-c2e3-44f6-80d0-73fedcfae65e
+** no instance found **
+(hbnb)
+```
 ### quit command
-![image](https://user-images.githubusercontent.com/70630575/141744130-62aa3db3-e0f2-4980-8395-3401ad29d4fb.png)
+```
+(08:01:48) vagrant@vagrant-ubuntu-trusty-64:AirBnB_clone(main)
+ --> ./console.py
+Welcome to HBNB shell interpreter! Type ? to list commands
+(hbnb) help quit
+Quit command to exit the program
+(hbnb) quit
+(08:02:04) vagrant@vagrant-ubuntu-trusty-64:AirBnB_clone(main)
+ -->
+ ```
 
 And that's it, guys. I wish we had more time for this project. There's still many things to fix but we did our best and will continue to develop this program so it can work as it should. Until next time!
 
