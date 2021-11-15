@@ -6,6 +6,7 @@ This project was given by Holberton School for us to understand multiple concept
 - Args/Kwargs for formatting datetimes
 - Class/Instances attributes
 - Global scope variables
+- cmd to create a command line interpreter
 
 ## Usage of this program:
 
